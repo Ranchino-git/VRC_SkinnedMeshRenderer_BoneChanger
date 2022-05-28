@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Net;
@@ -28,8 +28,8 @@ namespace StudioRan
 
 		public class SkinnedMeshRendererBoneChanger : EditorWindow
 		{
-			private string WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
-			private string LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
+			internal string WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
+			internal string LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
 			private Object Cloth;
 			private Object RootArmature;
 			private Object CachedObject;
@@ -48,11 +48,6 @@ namespace StudioRan
 				EditorWindow.GetWindow(typeof(SkinnedMeshRendererBoneChanger));
 			}
 
-			void Old_BonesChanged()
-			{
-				Repaint();
-			}
-
 			void OnGUI()
 			{
 				if(WebVersion != LocalVersion)
@@ -65,6 +60,10 @@ namespace StudioRan
 					if(GUILayout.Button("Update Tool", GUILayout.Height(30)))
 					{
 						new SkinnedMeshRendererBoneChangerUpdate().UpdateTool();
+					}
+					if(GUILayout.Button("Update Tool", GUILayout.Height(30)))
+					{
+						Repaint();
 					}
 				}
 				GUILayout.Label("응애 옷 바꺼");
