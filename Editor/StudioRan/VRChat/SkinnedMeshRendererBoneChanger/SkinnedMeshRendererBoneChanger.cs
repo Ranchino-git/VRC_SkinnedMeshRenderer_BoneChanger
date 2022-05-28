@@ -50,8 +50,8 @@ namespace StudioRan
 
 			void OnFocus()
 			{
-				WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
-				LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
+				WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/StudioRan/VRChat/SkinnedMeshRendererBoneChanger/VersionData");
+				LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\StudioRan\\VRChat\\SkinnedMeshRendererBoneChanger\\VersionData");
 			}
 			void OnGUI()
 			{
