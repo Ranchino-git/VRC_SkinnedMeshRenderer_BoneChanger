@@ -28,8 +28,8 @@ namespace StudioRan
 
 		public class SkinnedMeshRendererBoneChanger : EditorWindow
 		{
-			internal string WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
-			internal string LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
+			internal string WebVersion;
+			internal string LocalVersion;
 			private Object Cloth;
 			private Object RootArmature;
 			private Object CachedObject;
@@ -48,8 +48,14 @@ namespace StudioRan
 				EditorWindow.GetWindow(typeof(SkinnedMeshRendererBoneChanger));
 			}
 
+			void OnFocus()
+			{
+				WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
+				LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
+			}
 			void OnGUI()
 			{
+				
 				if(WebVersion != LocalVersion)
 				{
 					using (new BackgroundColorScope (Color.white, Color.red * 2))
@@ -61,10 +67,8 @@ namespace StudioRan
 					{
 						new SkinnedMeshRendererBoneChangerUpdate().UpdateTool();
 					}
-					if(GUILayout.Button("Update Tool", GUILayout.Height(30)))
-					{
-						Repaint();
-					}
+					GUILayout.Box("", GUILayout.Width(position.width));
+					GUILayout.Space(10);
 				}
 				GUILayout.Label("응애 옷 바꺼");
 
@@ -158,6 +162,17 @@ namespace StudioRan
 							ToolOptionWindow = false;
 							RootArmature = null;
 						}
+					}
+					//contour
+					GUILayout.Space(20);
+
+					using (new BackgroundColorScope (Color.red*2, Color.white))
+						GUILayout.Box("◆Update◆", GUILayout.Width(position.width), GUILayout.Height(25));
+					//Reset
+					if(GUILayout.Button("Check Update", GUILayout.Height(30)))
+					{
+						WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
+						LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
 					}
 					//contour
 					GUILayout.Space(20);
