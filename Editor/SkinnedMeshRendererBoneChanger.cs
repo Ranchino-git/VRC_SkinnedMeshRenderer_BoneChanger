@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Net;
+using System.IO;
 
 namespace StudioRan
 {
@@ -28,7 +29,7 @@ namespace StudioRan
 		public class SkinnedMeshRendererBoneChanger : EditorWindow
 		{
 			private string WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
-			private string LocalVersion = "0.1b";
+			private string LocalVersion = File.ReadAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
 			private Object Cloth;
 			private Object RootArmature;
 			private Object CachedObject;

@@ -21,8 +21,11 @@ namespace StudioRan
 			private void UpdateToolIn()
 			{
 				File.Delete(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger.cs");
-				string WebVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger.cs");
-				File.WriteAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger.cs", WebVersion);
+				File.Delete(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData");
+				string Tool = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger.cs");
+				string WebVersionData = new WebClient().DownloadString("https://raw.githubusercontent.com/Ranchino-git/VRC_SkinnedMeshRenderer_BoneChanger/main/Editor/SkinnedMeshRendererBoneChanger/VersionData");
+				File.WriteAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger.cs", Tool);
+				File.WriteAllText(".\\Assets\\Script\\Editor\\SkinnedMeshRendererBoneChanger\\VersionData", WebVersionData);
 			}
 		}
 	}
