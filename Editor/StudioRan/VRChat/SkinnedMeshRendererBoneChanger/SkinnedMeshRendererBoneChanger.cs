@@ -210,10 +210,28 @@ namespace StudioRan
 
 			private void BoneFind()
 			{
-				if(Old_Bones.Count > 0 && !SaveBone)
+				SkinnedMeshRenderer rend = new SkinnedMeshRenderer();
+				try
 				{
-					SkinnedMeshRenderer rend = ((GameObject)Cloth).GetComponent<SkinnedMeshRenderer>();
-					Old_Bones.Clear();
+					rend = ((GameObject)Cloth).GetComponent<SkinnedMeshRenderer>();
+				}
+				catch
+				{
+					EditorUtility.DisplayDialog("Report to Dev", "Error CODE 0002.\nReport to Developer","ok","cancel");
+				}
+
+				try
+				{
+					if(Old_Bones.Count > 0 && !SaveBone)
+						Old_Bones.Clear();
+				}
+				catch
+				{
+					EditorUtility.DisplayDialog("Report to Dev", "Error CODE 0100.\nReport to Developer","ok","cancel");
+				}
+
+				try
+				{
 					for(int i = 0; i < rend.bones.Length && !SaveBone; i++)
 					{
 						try
@@ -225,9 +243,13 @@ namespace StudioRan
 						catch
 						{
 							Old_Bones.Clear();
-							EditorUtility.DisplayDialog("Bone has lost.", "Bone has lost.","ok","");
+							EditorUtility.DisplayDialog("Bone has lost.", "Bone has lost.","ok","cancel");
 						}
 					}
+				}
+				catch
+				{
+					EditorUtility.DisplayDialog("Report to Dev", "Error CODE 1000.\nReport to Developer","ok","cancel");
 				}
 			}
 
